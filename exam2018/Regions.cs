@@ -17,7 +17,7 @@ namespace exam2018
             get { return nom; }
             set
             {
-                if (Regex.IsMatch(value, "[^0-9]{4,}"))//said    sa3id   sad
+                if (Regex.IsMatch(value, "[^0-9]{4,}"))
                 {
                     nom = value;
                 }
@@ -33,7 +33,7 @@ namespace exam2018
         }
         public int Recherche(String nomCisconscription)//4
         {
-            int i = -1,l=i;
+            int i = -1,l=-1;
             
             foreach(Circonscription c in circonscriptions)//c=circonscriptions[0]   i=0
             {
@@ -51,9 +51,7 @@ namespace exam2018
         public void Ajouter(Circonscription circonscription)//5
         {
             if(Recherche(circonscription.Nom)==-1)//utiliser la reponse de la question 4
-            {
                 circonscriptions.Add(circonscription);
-            }
         }
         public string CirconscriptionPrincipal//1-b
         {
@@ -65,6 +63,7 @@ namespace exam2018
             {
                 circonscriptionPrincipal = value;
                 Ajouter(new Circonscription(value, 0));//utiliser la reponse de la question 5
+                
                 
             }
         }
@@ -78,9 +77,10 @@ namespace exam2018
         }
         public void SupprimerCirconscription(string nomCirconscription) //6
         {
-            if(Recherche(nomCirconscription)!=-1)
+            int trouver = Recherche(nomCirconscription);
+            if (trouver!=-1)
             {
-                circonscriptions.RemoveAt(Recherche(nomCirconscription));
+                circonscriptions.RemoveAt(trouver);
                 if(nomCirconscription==CirconscriptionPrincipal)
                 {
                     CirconscriptionPrincipal = null;
